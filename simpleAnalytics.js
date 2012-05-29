@@ -7,13 +7,26 @@ var   util = require('util')
 
 
 
-/**
+/*
+ * Configuration
+ */
+
+var   port = process.env.PORT || 3000
+	, headers = {
+		  'Content-Type': 'text/plain'
+		, 'Cache-Control': 'no-cache'
+		, 'Pragma': 'no-cache'
+		, 'X-Robots-Tag': 'noindex'
+	}
+
+
+
+/*
  * Startup
  */
-var port = process.env.PORT || 3000;
 
 var server = http.createServer(function( req, res ) {
-	res.writeHead(200, {'Content-Type': 'text/plain'});
+	res.writeHead( 200, headers );
 	res.end('Hello World\n');
 });
 
