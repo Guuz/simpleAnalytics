@@ -55,12 +55,12 @@ function routes( req, res ) {
 		, ip = req.connection.remoteAddress
 
 	if( pathname == listeningPath && validKey( key ) && validValue( value ) ) {
-		util.log( key + ' ' + value + ' ' + ip );
 		res.writeHead( 200, headers );
+		util.log( key + ' ' + value + ' ' + ip );
 		res.end('ok\n');
 	} else {
-		util.log( 'invalid ' + parsedUrl.path );
 		res.writeHead( 404 );
+		util.log( 'invalid ' + parsedUrl.path );
 		res.end();
 	}
 }

@@ -84,13 +84,13 @@ function routes( req, res ) {
 		, ip = req.connection.remoteAddress
 
 	if( pathname == listeningPath && validKey( key ) && validValue( value ) ) {
+		res.writeHead( 200, headers );
 		store.write( timestamp() + ' - ' + key + ' ' + value + ' ' + ip + '\n' );
 		//console.log( store.write( timestamp() + ' - ' + key + ' ' + value + ' ' + ip + '\n' ) );
-		res.writeHead( 200, headers );
 		res.end('ok\n');
 	} else {
-		store.write( timestamp() + ' - ' + 'invalid ' + parsedUrl.path + '\n');
 		res.writeHead( 404 );
+		store.write( timestamp() + ' - ' + 'invalid ' + parsedUrl.path + '\n');
 		res.end();
 	}
 }
