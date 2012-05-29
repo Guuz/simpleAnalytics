@@ -51,7 +51,11 @@ var   port = process.env.PORT || 3000
  */
 
 var store = fs.createWriteStream('store.log', {'flags': 'a'});
-
+/*
+store.on('drain', function() {
+	console.log('DRAIN');
+})
+*/
 function pad(n) {
 	return n < 10 ? '0' + n.toString(10) : n.toString(10);
 }
@@ -81,6 +85,7 @@ function routes( req, res ) {
 
 	if( pathname == listeningPath && validKey( key ) && validValue( value ) ) {
 		store.write( timestamp() + ' - ' + key + ' ' + value + ' ' + ip + '\n' );
+		//console.log( store.write( timestamp() + ' - ' + key + ' ' + value + ' ' + ip + '\n' ) );
 		res.writeHead( 200, headers );
 		res.end('ok\n');
 	} else {
