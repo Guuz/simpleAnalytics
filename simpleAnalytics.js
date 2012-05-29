@@ -27,19 +27,20 @@ var   port = process.env.PORT || 3000
 /*
  * Validation
  */
-	function validKey( key ) {
-		if( validKeys.indexOf( key ) > -1 ) {
-			return true;
-		}
-		return false;
-	}
 
-	function validValue( value ) {
-		if( (parseFloat(value) == parseInt(value)) && !isNaN(value) ) {
-			return true;
-		}
-		return false;
+function validKey( key ) {
+	if( validKeys.indexOf( key ) > -1 ) {
+		return true;
 	}
+	return false;
+}
+
+function validValue( value ) {
+	if( (parseFloat(value) == parseInt(value)) && !isNaN(value) ) {
+		return true;
+	}
+	return false;
+}
 
 
 
