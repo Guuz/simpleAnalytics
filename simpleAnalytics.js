@@ -52,11 +52,7 @@ function validValue( value ) {
  */
 
 var store = fs.createWriteStream( filename, {'flags': 'a'} );
-/*
-store.on('drain', function() {
-	console.log('DRAIN');
-})
-*/
+
 function pad(n) {
 	return n < 10 ? '0' + n.toString(10) : n.toString(10);
 }
@@ -87,7 +83,6 @@ function routes( req, res ) {
 	if( pathname == listeningPath && validKey( key ) && validValue( value ) ) {
 		res.writeHead( 200, headers );
 		store.write( timestamp() + ' - ' + key + ' ' + value + ' ' + ip + '\n' );
-		//console.log( store.write( timestamp() + ' - ' + key + ' ' + value + ' ' + ip + '\n' ) );
 		res.end('ok\n');
 	} else {
 		res.writeHead( 404 );
