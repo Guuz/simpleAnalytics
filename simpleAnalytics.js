@@ -78,7 +78,16 @@ function routes( req, res ) {
 		, pathname = parsedUrl.pathname
 		, key = parsedUrl.query.key
 		, value = parsedUrl.query.value
-		, ip = req.connection.remoteAddress
+		, ip
+
+		// There can be multiple IP addresses because of proxies. Get the first one.
+		// Else get the normal IP address.
+		if( req.headers['x-forwarded-for'] ) {
+			ip = req.headers['x-forwarded-for'].split(',')[0];
+		} else {
+			// Else get the normal IP address.
+			ip = req.connection.remoteAddress;
+		}
 
 	if( pathname == listeningPath && validKey( key ) && validValue( value ) ) {
 		res.writeHead( 200, headers );
@@ -86,7 +95,7 @@ function routes( req, res ) {
 		res.end('ok\n');
 	} else {
 		res.writeHead( 404 );
-		store.write( timestamp() + ' - ' + 'invalid ' + parsedUrl.path + '\n');
+		store.write( timestamp() + ' - ' + 'invalid ' + parsedUrl.path + ' ' + ip + '\n');
 		res.end();
 	}
 }
