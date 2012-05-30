@@ -39,7 +39,7 @@ function validKey( key ) {
 }
 
 function validValue( value ) {
-	if( (parseFloat(value) == parseInt(value)) && !isNaN(value) ) {
+	if( (parseFloat(value) || parseInt(value)) && !isNaN(value) ) {
 		return true;
 	}
 	return false;
