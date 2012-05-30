@@ -16,7 +16,7 @@ var   util = require('util')
 var   port = process.env.PORT || 3000
 	, headers = {
 		  'Content-Type': 'text/plain'
-		, 'Cache-Control': 'no-cache'
+		, 'Cache-Control': 'no-cache no-store'
 		, 'Pragma': 'no-cache'
 		, 'X-Robots-Tag': 'noindex'
 	  }
