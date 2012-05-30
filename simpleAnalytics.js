@@ -23,6 +23,7 @@ var   port = process.env.PORT || 3000
 	, listeningPath = '/store'
 	, validKeys = ['key1', 'key2']
 	, months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+	, filename = Math.round(+new Date()/1000) + '-reiskostencheck.log'
 
 
 
@@ -50,7 +51,7 @@ function validValue( value ) {
  * Output
  */
 
-var store = fs.createWriteStream('store.log', {'flags': 'a'});
+var store = fs.createWriteStream( filename, {'flags': 'a'} );
 /*
 store.on('drain', function() {
 	console.log('DRAIN');
