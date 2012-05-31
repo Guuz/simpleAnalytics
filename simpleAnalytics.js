@@ -23,7 +23,7 @@ var   port = process.env.PORT || 3000
 	, listeningPath = '/store'
 	, validKeys = ['key1', 'key2']
 	, months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
-	, filename = Math.round(+new Date()/1000) + '-reiskostencheck.log'
+	, filename = Math.round(+new Date()/1000) + '-store.log'
 
 
 
